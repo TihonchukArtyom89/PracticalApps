@@ -14,4 +14,4 @@
 ### -Northwind.Razor.Customers - Class library project for Razor pages to demonstrate list of Customers with clickable links to view full information of customer and they orders.
 ### -Northwind.Razor.Employees - Class library project for Razor pages to demonstrate list of Employees.
 ### -Northwind.Web - ASP.NET Core project for a website with mix of static HTML and dynamic Razor Pages.
-
+### -Northwind.Common.PrimeFactors - Class library project with code from my early made console app (decomposition number on prime factors).
