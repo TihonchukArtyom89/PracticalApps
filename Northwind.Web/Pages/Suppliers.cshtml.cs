@@ -22,7 +22,6 @@ namespace Northwind.Web.Pages
         public Supplier? Supplier { get; set; }
         public IActionResult OnPost()
         {
-            WriteLine("before if");
             if ((Supplier is not null) && ModelState.IsValid)
             {
                 db.Suppliers.Add(Supplier);

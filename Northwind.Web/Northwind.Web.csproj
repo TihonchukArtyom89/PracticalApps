@@ -8,6 +8,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Northwind.Common.DataContext.Sqlite\Northwind.Common.DataContext.Sqlite.csproj" />
+    <ProjectReference Include="..\Northwind.Common.PrimeFactors\Northwind.Common.PrimeFactors.csproj" />
     <ProjectReference Include="..\Northwind.Razor.Customers\Northwind.Razor.Customers.csproj" />
     <ProjectReference Include="..\Northwind.Razor.Employees\Northwind.Razor.Employees.csproj" />
   </ItemGroup>

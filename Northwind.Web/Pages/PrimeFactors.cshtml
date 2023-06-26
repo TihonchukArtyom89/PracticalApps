@@ -1,0 +1,16 @@
+﻿@page
+@using Packt.Shared
+@model Northwind.Web.Pages.PrimeFactorsModel
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+<div class="row">
+    <p>Enter a number between 0 and 1000:</p>
+    <form method="POST">
+        <div><input asp-for="Number" placeholder="Number" /></div>
+        <input type="submit" />
+    </form>
+    @if(Model.Answer is not null)
+    {
+        <p>@Model.Answer</p>
+    }
+</div>
