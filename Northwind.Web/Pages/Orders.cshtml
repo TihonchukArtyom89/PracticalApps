@@ -1,0 +1,14 @@
+﻿@page
+@using Packt.Shared;
+@inject NorthwindContext db;
+@{
+    string title = "Orders";
+    ViewData["Title"] = $"Northwind B@B - {title}";
+    ViewData["YearNumber"] = DateTime.Now.ToString("yyyy");
+}
+<div class="row">
+    <h1 class="display-2">@title</h1>
+    <p>
+        There are @db.Orders.Count() orders in Northwind database.
+    </p>
+</div>

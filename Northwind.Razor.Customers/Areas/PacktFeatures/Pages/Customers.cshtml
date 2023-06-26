@@ -1,0 +1,25 @@
+﻿@page
+@using Packt.Shared
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@model PacktFeatures.Pages.CustomersModel
+<div class="row">
+    <h1 class="display-2">Customers</h1>
+</div>
+<div class="row">
+    @if (Model.Customers is not null)
+    {
+        @foreach (var country in Model.Customers)
+        {
+            <h2 class="display-3">@country.Key</h2>
+            <table class="table">
+                <thead class="thead-inverse"><tr><th>Company Name</th><th>City</th><th>Phone</th></tr></thead>
+                <tbody>
+                    @foreach (var customer in country)
+                    {
+                        <tr><td><a href="/packtfeatures/customerdetails/?customerId=@customer.CustomerId">@customer.CompanyName</a></td><td>@customer.City</td><td>@customer.Phone</td></tr>
+                    }
+                </tbody>
+            </table>
+        }
+    }
+</div>

@@ -1,0 +1,37 @@
+﻿@page
+@using Packt.Shared
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@model PacktFeatures.Pages.CustomerDetailsModel
+<div class="row">
+    @if (Model.Customer is not null)
+    {
+        <h1 class="display-1">Customer Details</h1>
+        <div class="row">Company name: @Model?.Customer?.CompanyName</div>
+        <div class="row">Company fax: @Model?.Customer?.Fax</div>
+        <div class="row">Contact name: @Model?.Customer?.ContactName</div>
+        <div class="row">Company address: @Model?.Customer?.Address</div>
+        <div class="row">Company city: @Model?.Customer?.City</div>
+        <div class="row">Company coutnry: @Model?.Customer?.Country</div>
+        <div class="row">Company region: @Model?.Customer?.Region</div>
+        <div class="row">Company phone: @Model?.Customer?.Phone</div>
+        <div class="row">Company postal code: @Model?.Customer?.PostalCode</div>
+        <div class="row">Company contact title: @Model?.Customer?.ContactTitle</div>
+        @if (Model?.Orders is not null)
+        {
+            <h1 class="display-1">Customer Orders</h1>
+            @foreach (Order o in Model.Orders)
+            {
+
+                <div class="row">
+                    <p>"Order date: "@o?.OrderDate</p>
+                    <p>"Required date: "@o?.RequiredDate</p>
+                    <p>"Ship Address: "@o?.ShipAddress</p>
+                    <p>"Ship Name: "@o?.ShipName</p>
+                </div>
+            }
+        }
+        <p>
+            <a class="btn btn-primary" href="packtfeatures/customers">Back to view our customers</a>
+        </p>
+    }
+</div>
