@@ -1,7 +1,9 @@
-using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
-using Northwind.Mvc.Data;
-
+//Section 1 - import namespaces
+using Microsoft.AspNetCore.Identity;//IdentityUser
+using Microsoft.EntityFrameworkCore;//USeSqlServer
+using Northwind.Mvc.Data;//ApplicationDbContext
+using Packt.Shared;//AddNorthwindContext extension method
+//Section 2 - configure the host web server builder including services
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -13,10 +15,10 @@ builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
     .AddEntityFrameworkStores<ApplicationDbContext>();
 builder.Services.AddControllersWithViews();
-
+builder.Services.AddNorthwindContext();
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
+// Section 3 - configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     app.UseMigrationsEndPoint();
@@ -33,11 +35,12 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
 app.MapRazorPages();
-
-app.Run();
+//Section 4 - start the host web server listening for HTTP requests
+app.Run();//blocking call
