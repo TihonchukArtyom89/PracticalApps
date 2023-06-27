@@ -20,7 +20,6 @@ html {
 body {
   margin-bottom: 60px;
 }
-#product-columns
-{
-    column-count:3;
+#product-columns{
+    column-count: 3;
 }
