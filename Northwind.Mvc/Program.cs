@@ -17,6 +17,7 @@ builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.Requ
     .AddEntityFrameworkStores<ApplicationDbContext>();
 builder.Services.AddControllersWithViews();
 builder.Services.AddNorthwindContext();
+builder.Services.AddOutputCache(options => { options.DefaultExpirationTimeSpan = TimeSpan.FromSeconds(20); options.AddPolicy("views", p => p.SetVaryByQuery("alertstyle")); });
 var app = builder.Build();
 
 // Section 3 - configure the HTTP request pipeline.
@@ -38,10 +39,13 @@ app.UseRouting();
 
 app.UseAuthentication();
 app.UseAuthorization();
+app.UseOutputCache();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
+    pattern: "{controller=Home}/{action=Index}/{id?}").CacheOutput("views");
 app.MapRazorPages();
+app.MapGet("/nocached",()=>DateTime.Now.ToString());
+app.MapGet("/cached", () => DateTime.Now.ToString()).CacheOutput();
 //Section 4 - start the host web server listening for HTTP requests
 app.Run();//blocking call

@@ -15,14 +15,14 @@ namespace Northwind.Mvc.Controllers
             _logger = logger;
             db = injectedContext;
         }
-        [ResponseCache(Duration =10/*seconds*/,Location =ResponseCacheLocation.Any)]
+        [ResponseCache(Duration = 10/*seconds*/, Location = ResponseCacheLocation.Any)]
         public IActionResult Index()
         {
             HomeIndexViewModel model = new(VisitorCount: Random.Shared.Next(1, 1001), Categories: db.Categories.ToList(), Products: db.Products.ToList());
             return View(model);//pass model to view
         }
         [Route("private")]
-        [Authorize(Roles ="Administrators")]
+        [Authorize(Roles = "Administrators")]
         public IActionResult Privacy()
         {
             return View();
@@ -33,8 +33,9 @@ namespace Northwind.Mvc.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
-        public IActionResult ProductDetail(int? id)
+        public IActionResult ProductDetail(int? id, string alertstyle = "success")
         {
+            ViewData["alertstyle"] = alertstyle;
             if (!id.HasValue)
             {
                 return BadRequest("You must pass a product ID in the route, for example, /Home/ProductDetail/21");
