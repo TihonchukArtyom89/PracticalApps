@@ -2,6 +2,7 @@
 using Northwind.Mvc.Models;//ErrorViewModel
 using System.Diagnostics;//Activity
 using Packt.Shared;//NorthwindContext
+using Microsoft.AspNetCore.Authorization;
 namespace Northwind.Mvc.Controllers
 {
     public class HomeController : Controller
@@ -14,13 +15,14 @@ namespace Northwind.Mvc.Controllers
             _logger = logger;
             db = injectedContext;
         }
-
+        [ResponseCache(Duration =10/*seconds*/,Location =ResponseCacheLocation.Any)]
         public IActionResult Index()
         {
             HomeIndexViewModel model = new(VisitorCount: Random.Shared.Next(1, 1001), Categories: db.Categories.ToList(), Products: db.Products.ToList());
             return View(model);//pass model to view
         }
-
+        [Route("private")]
+        [Authorize(Roles ="Administrators")]
         public IActionResult Privacy()
         {
             return View();
