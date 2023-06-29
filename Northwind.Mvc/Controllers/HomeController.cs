@@ -3,6 +3,7 @@ using Northwind.Mvc.Models;//ErrorViewModel
 using System.Diagnostics;//Activity
 using Packt.Shared;//NorthwindContext
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.EntityFrameworkCore;//Include extension method
 namespace Northwind.Mvc.Controllers
 {
     public class HomeController : Controller
@@ -57,6 +58,19 @@ namespace Northwind.Mvc.Controllers
             HomeModelBindingViewModel model = new(Thing: thing, HasErrors: !ModelState.IsValid, ValidationErrors: ModelState.Values.SelectMany(state => state.Errors).Select(error => error.ErrorMessage));
             return View(model);//show the model bound thing 
         }
-
+        public IActionResult ProductsThatCostMoreThan(decimal? price)
+        {
+            if(!price.HasValue)
+            {
+                return BadRequest("You must pass a product price in the query string, for example /Home/ProductsThatCostMoreThan?price=50");
+            }
+            IEnumerable<Product> model = db.Products.Include(p => p.Category).Include(p => p.Supplier).Where(p => p.UnitPrice > price);
+            if(!model.Any())
+            {
+                return NotFound($"No products cost more than {price:C}");
+            }
+            ViewData["MaxPrice"] = price.Value.ToString("C");
+            return View(model);//Pass model to view
+        }
     }
 }
