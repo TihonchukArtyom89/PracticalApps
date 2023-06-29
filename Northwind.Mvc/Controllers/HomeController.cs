@@ -76,5 +76,20 @@ namespace Northwind.Mvc.Controllers
             ViewData["MaxPrice"] = price.Value.ToString("C");
             return View(model);//Pass model to view
         }
+        [Route("category/{id}")]
+        [Route("category")]
+        public async Task<IActionResult> Category(int? id)
+        {
+            if (!id.HasValue)
+            {
+                return BadRequest("You must pass a category ID in the route, for example, /Home/Category/2");
+            }
+            Category? model = await db.Categories.Include(p => p.Products).SingleOrDefaultAsync(p => p.CategoryId == id);
+            if (model is null)
+            {
+                return NotFound($"CategoryId {id} not found.");
+            }
+            return View(model);//pass model a view and then return result
+        }
     }
 }

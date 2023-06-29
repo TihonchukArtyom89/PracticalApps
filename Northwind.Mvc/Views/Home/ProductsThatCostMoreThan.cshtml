@@ -4,8 +4,9 @@
     string title = "Products That Cost More Than " + ViewData["MaxPrice"];
     ViewData["Title"] = title;
 }
+
 <h2>@title</h2>
-@if(Model is null)
+@if (Model is null)
 {
     <div> No products found.</div>
 }
@@ -22,7 +23,7 @@ else
             </tr>
         </thead>
         <tbody>
-            @foreach(Product p in Model)
+            @foreach (Product p in Model)
             {
                 <tr>
                     <td>

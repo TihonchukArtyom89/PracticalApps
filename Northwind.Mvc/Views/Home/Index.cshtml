@@ -43,7 +43,9 @@
                         <h2>@Model.Categories[c].CategoryName</h2>
                         <h3>@Model.Categories[c].Description</h3>
                         <p>
-                            <a class="btn btn-primary" href="/category/@Model.Categories[c].CategoryId">View</a>
+                            <a class="btn btn-primary" href="/category/@Model.Categories[c].CategoryId">View</a> 
+                            @*<a asp-controller="Home" asp-action="Category" asp-route-id="@Model.Categories[c].CategoryId" class="btn btn-primary">View</a>*@ @*other variant of link*@
+                            @*<a class="btn btn-primary" href="/category?id=@Model.Categories[c].CategoryId">View</a>*@@*other variant of link*@ @*variant of link with query parametr string (i think i use it when parametrs less than 2)*@
                         </p>
                     </div>
                 </div>

@@ -1,0 +1,38 @@
+﻿@using Packt.Shared
+@model Category
+@{
+    ViewData["Title"] = "Category Detail - " + Model.CategoryName;
+}
+<hr />
+<div>
+    <h2>@ViewData["Title"]</h2>
+    <dl class="dl-horizontal">
+        <dt>Category Id</dt>
+        <dd>@Model.CategoryId</dd>
+        <dt>Category Name</dt>
+        <dd>@Model.CategoryName</dd>
+        <dt>Category Description</dt>
+        <dd>@Model.Description</dd>
+        <dt>Category Image</dt>
+        <dd><img class="d-block w-100" src="~/images/category@(Model.CategoryId).jpeg" alt="@Model.CategoryName" /></dd>
+        <dt>Products in category</dt>
+        <dd>
+            @if (Model.Products is null)
+            {
+                <div>No products in category</div>
+            }
+            else
+            {
+                @foreach (Product p in Model.Products)
+                {
+                    <a asp-controller="Home" asp-action="ProductDetail" asp-route-id="@p.ProductId" class="btn btn-primary">
+                        <div>@p.ProductName</div>
+                        <span>
+                            @(p.UnitPrice is null ? "zero" : p.UnitPrice.Value.ToString("C"))
+                        </span>
+                    </a>
+                }
+            }
+        </dd>
+    </dl>
+</div>
