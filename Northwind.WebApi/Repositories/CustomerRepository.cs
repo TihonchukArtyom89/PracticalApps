@@ -3,7 +3,7 @@ using Packt.Shared;//Customer, NorthwindContext
 using System.Collections.Concurrent;//ConcurrentDictoinary
 namespace Northwind.WebApi.Repositories;
 
-public class CustomerRepository
+public class CustomerRepository:ICustomerRepository
 {
     //Use a static thread-safe dictionary field to cache the customers.
     private static ConcurrentDictionary<string, Customer>? customersCache;
