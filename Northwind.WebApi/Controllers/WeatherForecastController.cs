@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace Northwind.WebApi.Controllers
 {
     [ApiController]
-    [Route("[api/controller]")]
+    [Route("[controller]")]
     public class WeatherForecastController : ControllerBase
     {
         private static readonly string[] Summaries = new[]
@@ -16,12 +16,18 @@ namespace Northwind.WebApi.Controllers
         public WeatherForecastController(ILogger<WeatherForecastController> logger)
         {
             _logger = logger;
-        }
-        // GET/weatherforecas
-        [HttpGet(Name = "GetWeatherForecast")]
+        } 
+        // GET/weatherforecast - example URL path
+        [HttpGet(Name = "GetWeatherForecastFiveDays")]
         public IEnumerable<WeatherForecast> Get()//original method
         {
-            return Enumerable.Range(1, 5).Select(index => new WeatherForecast
+            return Get(days: 5);//five day forecast
+        }
+        // GET/weatherforecast/7 - example URL path
+        [HttpGet(template:"days:int", Name = "GetWeatherForecast")]
+        public IEnumerable<WeatherForecast> Get(int days)//new method
+        {
+            return Enumerable.Range(1, days).Select(index => new WeatherForecast
             {
                 Date = DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
                 TemperatureC = Random.Shared.Next(-20, 55),
