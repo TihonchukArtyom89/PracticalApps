@@ -25,6 +25,7 @@ builder.Services.AddHttpClient(name: "Northwind.WebApi",
         options.BaseAddress = new Uri("https://localhost:5002/");
         options.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue(mediaType: "application/json", quality: 1.0));
     });
+builder.Services.AddHealthChecks();
 var app = builder.Build();
 
 // Section 3 - configure the HTTP request pipeline.
@@ -47,12 +48,12 @@ app.UseRouting();
 app.UseAuthentication();
 app.UseAuthorization();
 app.UseOutputCache();
-
+app.UseHealthChecks(path: "/howdoyoufeel");
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}").CacheOutput("views");
 app.MapRazorPages();
-app.MapGet("/nocached",()=>DateTime.Now.ToString());
+app.MapGet("/nocached", () => DateTime.Now.ToString());
 app.MapGet("/cached", () => DateTime.Now.ToString()).CacheOutput();
 //Section 4 - start the host web server listening for HTTP requests
 app.Run();//blocking call
