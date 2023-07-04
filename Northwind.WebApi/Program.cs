@@ -3,6 +3,7 @@ using Packt.Shared;//AddNorthwindContext extension method
 using Northwind.WebApi.Repositories;//ICustomerRepository, CustomerRepository
 using Swashbuckle.AspNetCore.SwaggerUI;//SubmitMethod
 using Microsoft.AspNetCore.HttpLogging;//HttpLoggingFields
+using System.Net.Http.Headers;//MedaTypeWithQualityHeaderValue
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.

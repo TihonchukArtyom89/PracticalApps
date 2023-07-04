@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Identity;//IdentityUser
 using Microsoft.EntityFrameworkCore;//USeSqlServer
 using Northwind.Mvc.Data;//ApplicationDbContext
 using Packt.Shared;//AddNorthwindContext extension method
+using System.Net.Http.Headers;
 //Section 2 - configure the host web server builder including services
 var builder = WebApplication.CreateBuilder(args);
 
@@ -18,6 +19,12 @@ builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.Requ
 builder.Services.AddControllersWithViews();
 builder.Services.AddNorthwindContext();
 builder.Services.AddOutputCache(options => { options.DefaultExpirationTimeSpan = TimeSpan.FromSeconds(20); options.AddPolicy("views", p => p.SetVaryByQuery("alertstyle")); });
+builder.Services.AddHttpClient(name: "Northwind.WebApi",
+    configureClient: options =>
+    {
+        options.BaseAddress = new Uri("https://localhost:5002/");
+        options.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue(mediaType: "application/json", quality: 1.0));
+    });
 var app = builder.Build();
 
 // Section 3 - configure the HTTP request pipeline.
