@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Mvc.Formatters;//IOutputFormatter,OutputFormatter
 using Packt.Shared;//AddNorthwindContext extension method
 using Northwind.WebApi.Repositories;//ICustomerRepository, CustomerRepository
 using Swashbuckle.AspNetCore.SwaggerUI;//SubmitMethod
+using Microsoft.AspNetCore.HttpLogging;//HttpLoggingFields
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -27,6 +28,12 @@ builder.Services.AddControllers(options =>
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddScoped<ICustomerRepository, CustomerRepository>();
+builder.Services.AddHttpLogging(options => 
+{
+    options.LoggingFields=HttpLoggingFields.All;
+    options.RequestBodyLogLimit = 4096;//default 32k
+    options.ResponseBodyLogLimit = 4096;//default 32k
+});
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -35,6 +42,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI(c => { c.SwaggerEndpoint("/swagger/v1/swagger.json", "Norhtwind Service API Version 1"); c.SupportedSubmitMethods(new[] { SubmitMethod.Get, SubmitMethod.Post, SubmitMethod.Put, SubmitMethod.Delete }); });
 }
+
+app.UseHttpLogging();
 
 app.UseHttpsRedirection();
 
