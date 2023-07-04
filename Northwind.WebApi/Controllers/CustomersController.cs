@@ -52,6 +52,8 @@ public class CustomersController : ControllerBase
     [HttpPost]
     [ProducesResponseType(200, Type = typeof(Customer))]
     [ProducesResponseType(404)]
+    [ProducesResponseType(400)]
+    [ProducesResponseType(201)]
     public async Task<IActionResult> Create([FromBody] Customer c)
     {
         if (c == null)
