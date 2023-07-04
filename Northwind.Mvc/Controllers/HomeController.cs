@@ -97,7 +97,7 @@ namespace Northwind.Mvc.Controllers
             string uri;
             if (string.IsNullOrEmpty(country))
             {
-                ViewData["Title"] = "All Customers";
+                ViewData["Title"] = "All Customers Worldwide";
                 uri = "api/customers";
             }
             else
