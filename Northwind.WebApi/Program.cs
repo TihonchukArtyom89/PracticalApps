@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Mvc.Formatters;//IOutputFormatter,OutputFormatter
 using Packt.Shared;//AddNorthwindContext extension method
 using Northwind.WebApi.Repositories;//ICustomerRepository, CustomerRepository
+using Swashbuckle.AspNetCore.SwaggerUI;//SubmitMethod
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -10,8 +11,8 @@ builder.Services.AddControllers(options =>
     WriteLine("Default output formatters:");
     foreach (IOutputFormatter formatter in options.OutputFormatters)
     {
-        OutputFormatter? mediaFormatter =formatter as OutputFormatter;
-        if(mediaFormatter is null)
+        OutputFormatter? mediaFormatter = formatter as OutputFormatter;
+        if (mediaFormatter is null)
         {
             WriteLine($"    {formatter.GetType().Name}");
         }
@@ -32,7 +33,7 @@ var app = builder.Build();
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
-    app.UseSwaggerUI();
+    app.UseSwaggerUI(c => { c.SwaggerEndpoint("/swagger/v1/swagger.json", "Norhtwind Service API Version 1"); c.SupportedSubmitMethods(new[] { SubmitMethod.Get, SubmitMethod.Post, SubmitMethod.Put, SubmitMethod.Delete }); });
 }
 
 app.UseHttpsRedirection();
