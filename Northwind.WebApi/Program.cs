@@ -49,7 +49,7 @@ app.UseHttpLogging();
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
-
+app.UseMiddleware<SecurityHeaders>();
 app.MapControllers();
 
 app.Run();
