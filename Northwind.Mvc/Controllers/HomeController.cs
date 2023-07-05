@@ -4,6 +4,9 @@ using System.Diagnostics;//Activity
 using Packt.Shared;//NorthwindContext
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.EntityFrameworkCore;//Include extension method
+using System;
+using Microsoft.Extensions.Logging;
+
 namespace Northwind.Mvc.Controllers
 {
     public class HomeController : Controller
@@ -25,6 +28,18 @@ namespace Northwind.Mvc.Controllers
             _logger.LogWarning("Second warning!");
             _logger.LogInformation("I am in the Index method of the HomeController.");
             HomeIndexViewModel model = new(VisitorCount: Random.Shared.Next(1, 1001), Categories: await db.Categories.ToListAsync(), Products: await db.Products.ToListAsync());
+            try
+            {
+                HttpClient client = clientFactory.CreateClient(name: "Minimal.WebApi");
+                HttpRequestMessage request = new(method: HttpMethod.Get, requestUri: "weatherforecast");
+                HttpResponseMessage response = await client.SendAsync(request);
+                ViewData["weather"] = await response.Content.ReadFromJsonAsync<WeatherForecast[]>();
+            }
+            catch(Exception ex)
+            {
+                _logger.LogWarning($"The Minimal Web.Api is not responding. Exception: {ex.Message}");
+                ViewData["weather"] =Enumerable.Empty<WeatherForecast>().ToArray();
+            }
             return View(model);//pass model to view
         }
         [Route("private")]

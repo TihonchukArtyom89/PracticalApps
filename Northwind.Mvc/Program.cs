@@ -26,6 +26,11 @@ builder.Services.AddHttpClient(name: "Northwind.WebApi",
         options.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue(mediaType: "application/json", quality: 1.0));
     });
 builder.Services.AddHealthChecks();
+builder.Services.AddHttpClient(name:"Minimal.WebApi",configureClient: options => 
+{
+    options.BaseAddress = new Uri("https://localhost:5003/");
+    options.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue(mediaType: "application/json", quality: 1.0));
+});
 var app = builder.Build();
 
 // Section 3 - configure the HTTP request pipeline.
