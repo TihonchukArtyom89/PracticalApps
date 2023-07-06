@@ -126,13 +126,14 @@ namespace Northwind.Mvc.Controllers
             IEnumerable<Customer>? model = await response.Content.ReadFromJsonAsync<IEnumerable<Customer>>();
             return View(model);
         }
-        public async Task<IActionResult> CreateCustomer()
+        public async Task<IActionResult> CreateCustomer(Customer c)
         {
             HttpClient client = clientFactory.CreateClient(name: "Northwind.WebApi");
             HttpRequestMessage request = new(method: HttpMethod.Post, requestUri: "api/customers");
+            request.Content = c;
             HttpResponseMessage response = await client.SendAsync(request);
-            Customer? model = await response.Content.ReadFromJsonAsync<Customer>();
-            return View(model);
+            Customer? customer = await response.Content.ReadFromJsonAsync<Customer>();
+            return View(c);
         }
     }
 }

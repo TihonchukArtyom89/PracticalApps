@@ -18,10 +18,10 @@
         {
         <table class="table table-info">
             <tr>
-                @foreach (WeatherForecast w in weather)
-                {
+                    @foreach (WeatherForecast w in weather)
+                    {
                     <td>@w.Date.ToString("ddd d MMM") will be @w.Summary</td>
-                }
+                    }
             </tr>
         </table>
         }
@@ -91,6 +91,11 @@
             <input name="country" placeholder="Enter a country" />
             <input type="submit" />
         </form>
+        <p class="lead">
+            
+        </p>
+        <h4>Create customer(Not working)</h4>
+        <a asp-controller="Home" asp-action="CreateCustomer" class="btn btn-secondary">Create Customer(Not working)</a>
         <h3>Query products by price</h3>
         <form asp-action="ProductsThatCostMoreThan" method="get">
             <input name="price" placeholder="Enter a product price" />
