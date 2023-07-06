@@ -130,7 +130,7 @@ namespace Northwind.Mvc.Controllers
         {
             HttpClient client = clientFactory.CreateClient(name: "Northwind.WebApi");
             HttpRequestMessage request = new(method: HttpMethod.Post, requestUri: "api/customers");
-            request.Content = c;
+            request.Content.ReadFromJsonAsync =    c;
             HttpResponseMessage response = await client.SendAsync(request);
             Customer? customer = await response.Content.ReadFromJsonAsync<Customer>();
             return View(c);
