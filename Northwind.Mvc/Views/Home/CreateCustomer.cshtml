@@ -1,0 +1,18 @@
+﻿@using Packt.Shared;
+@model Customer
+<h1>Create Customer Page</h1>
+<hr />
+<form method="post" action="/home/modelbinding/2?id=3">
+    <input asp-for="@Model.CustomerId" placeholder="Customer Id" value=@null />
+    <input asp-for="@Model.CompanyName" placeholder="Company Name" value=@null />
+    <input asp-for="@Model.ContactName" placeholder="Contact Name" value=@null />
+    <input asp-for="@Model.ContactTitle" placeholder="ContactTitle" value=@null />
+    <input asp-for="@Model.Address" placeholder="Address" value=@null />
+    <input asp-for="@Model.City" placeholder="City" value=@null />
+    <input asp-for="@Model.Region" placeholder="Region" value=@null />
+    <input asp-for="@Model.PostalCode" placeholder="Postal Code" value=@null />
+    <input asp-for="@Model.Country" placeholder="Country" value=@null />
+    <input asp-for="@Model.Phone" placeholder="Phone" value=@null />
+    <input asp-for="@Model.Fax" placeholder="Fax" value=@null />
+    <input type="submit" />
+</form>

@@ -35,10 +35,10 @@ namespace Northwind.Mvc.Controllers
                 HttpResponseMessage response = await client.SendAsync(request);
                 ViewData["weather"] = await response.Content.ReadFromJsonAsync<WeatherForecast[]>();
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 _logger.LogWarning($"The Minimal Web.Api is not responding. Exception: {ex.Message}");
-                ViewData["weather"] =Enumerable.Empty<WeatherForecast>().ToArray();
+                ViewData["weather"] = Enumerable.Empty<WeatherForecast>().ToArray();
             }
             return View(model);//pass model to view
         }
@@ -124,6 +124,14 @@ namespace Northwind.Mvc.Controllers
             HttpRequestMessage request = new(method: HttpMethod.Get, requestUri: uri);
             HttpResponseMessage response = await client.SendAsync(request);
             IEnumerable<Customer>? model = await response.Content.ReadFromJsonAsync<IEnumerable<Customer>>();
+            return View(model);
+        }
+        public async Task<IActionResult> CreateCustomer()
+        {
+            HttpClient client = clientFactory.CreateClient(name: "Northwind.WebApi");
+            HttpRequestMessage request = new(method: HttpMethod.Post, requestUri: "api/customers");
+            HttpResponseMessage response = await client.SendAsync(request);
+            Customer? model = await response.Content.ReadFromJsonAsync<Customer>();
             return View(model);
         }
     }
