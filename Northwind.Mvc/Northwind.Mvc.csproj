@@ -22,4 +22,7 @@
     <ProjectReference Include="..\Northwind.Common.DataContext.Sqlite\Northwind.Common.DataContext.Sqlite.csproj" />
   </ItemGroup>
 
+	<ItemGroup>
+		<Using Include="System.Console" Static="true"/>
+	</ItemGroup>
 </Project>
