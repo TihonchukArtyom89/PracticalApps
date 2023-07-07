@@ -1,0 +1,45 @@
+﻿@using Packt.Shared;
+@model List<Customer>
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+<h1>Search Customers Page</h1>
+<hr />
+<form asp-action="SearchCustomers" method="get">
+    <input name="searchPhrase" placeholder="Search..." />
+    <input type="submit" />
+</form>
+@if (Model is not null)
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Company Name</th>
+                <th>Contact Name</th>
+                <th>Address</th>
+                <th>Phone</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (Customer c in Model)
+            {
+                <tr>
+                    <td>
+                        @c.CompanyName
+                    </td>
+                    <td>
+                        @c.ContactTitle
+                    </td>
+                    <td>
+                        @c.Address
+                        @c.City
+                        @c.Region
+                        @c.Country
+                        @c.PostalCode
+                    </td>
+                    <td>
+                        @c.Phone
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}

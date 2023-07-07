@@ -136,7 +136,7 @@ namespace Northwind.Mvc.Controllers
             Customer? customer = await response.Content.ReadFromJsonAsync<Customer>();
             return View(customer);
         }
-        public async Task<IActionResult> SearchCustomer(string searchPhrase)
+        public async Task<IActionResult> SearchCustomers(string searchPhrase)
         {
             HttpClient client = clientFactory.CreateClient(name: "Northwind.WebApi");
             HttpRequestMessage request = new(method: HttpMethod.Get, requestUri: "api/customers");
@@ -148,7 +148,7 @@ namespace Northwind.Mvc.Controllers
                 Regex regex = new Regex(searchPhrase,RegexOptions.IgnoreCase);
                 foreach (Customer c in allCustomers)
                 {//search will be on CustomerId and CompanyName
-                    MatchCollection matchesCustomerId = regex.Matches(c.CustomerId);//Regex.Match(c.CustomerId, $"{searchPhrase}");
+                    MatchCollection matchesCustomerId = regex.Matches(c.CustomerId);
                     MatchCollection matchesCompanyName = regex.Matches(c.CompanyName);
                     if ((matchesCustomerId.Count!=0)||(matchesCompanyName.Count!=0))
                     {//add this customer to search result list (List<Customer>? resultCustomers)
@@ -156,7 +156,6 @@ namespace Northwind.Mvc.Controllers
                     }
                 }
             }
-            //customers = customers.Where()
             return View(resultCustomers);
         }
     }
