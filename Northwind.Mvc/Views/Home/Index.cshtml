@@ -92,10 +92,15 @@
             <input type="submit" />
         </form>
         <p class="lead">
-            
+
         </p>
-        <h4>Create customer(Not working)</h4>
-        <a asp-controller="Home" asp-action="CreateCustomer" class="btn btn-secondary">Create Customer(Not working)</a>
+        <h4>Create customer</h4>
+        <a asp-controller="Home" asp-action="CreateCustomer" class="btn btn-info">Create Customer</a>
+        <h3>Search customers on CustomerId and CompanyName</h3>
+        <form asp-action="SearchCustomers" method="get">
+            <input name="searchPhrase" placeholder="Search..." />
+            <input type="submit" />
+        </form>
         <h3>Query products by price</h3>
         <form asp-action="ProductsThatCostMoreThan" method="get">
             <input name="price" placeholder="Enter a product price" />
