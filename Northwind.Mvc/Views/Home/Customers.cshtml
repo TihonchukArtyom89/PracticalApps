@@ -5,6 +5,7 @@
 <table class="table">
     <thead>
         <tr>
+            <th>Customer Id</th>
             <th>Company Name</th>
             <th>Contact Name</th>
             <th>Address</th>
@@ -17,6 +18,9 @@
             @foreach (Customer c in Model)
             {
                 <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem=> c.CustomerId)
+                    </td>
                     <td>
                         @Html.DisplayFor(modelItem=> c.CompanyName)
                     </td>

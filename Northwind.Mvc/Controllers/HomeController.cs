@@ -7,6 +7,7 @@ using Microsoft.EntityFrameworkCore;//Include extension method
 using System.Linq;
 using System.Text.RegularExpressions; // Regex
 using Microsoft.Extensions.Logging;
+using System.Web;
 
 namespace Northwind.Mvc.Controllers
 {
