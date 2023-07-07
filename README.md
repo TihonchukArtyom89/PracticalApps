@@ -9,6 +9,7 @@
  - SQLite - Database provider.
  - ASP.NET Core MVC
  - WebApi/Minimal WebApi
+ - Blazor Server/WebAssembly
 ## Projects in solution:
  - Northwind.Common.DataContext.Sqlite - Class library project for EF Core Entity models.
  - Northwind.Common.EntityModels.Sqlite - Class library project for the EF Core Entity database context with dependencies on database provider.
@@ -17,6 +18,7 @@
  - Northwind.Razor.Employees - Class library project for Razor pages to demonstrate list of Employees.
  - Northwind.Web - ASP.NET Core project for a website with mix of static HTML and dynamic Razor Pages.
  - Northwind.Common.PrimeFactors - Class library project with code from my early made console app (decomposition number on prime factors).
- - Northwind.Mvc - ASP.NET Core project with using MVC design pattern.
+ - Northwind.Mvc - ASP.NET Core project with using MVC design pattern to create website with using two services (launch with Northwind.WebApi and Minimal.WebApi projects at the same time).
  - Northwind.WebApi - ASP.NET Core WebApi project.
  - Minimal.WebApi - ASP.NET Core WebApi project without selecting checkbox to use controllers and views.
+ - Northwind.BlazorServer - Blazor Server project.
