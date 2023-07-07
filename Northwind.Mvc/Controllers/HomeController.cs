@@ -158,5 +158,12 @@ namespace Northwind.Mvc.Controllers
             }
             return View(resultCustomers);
         }
+        public async Task<IActionResult> DeleteCustomer(string id)
+        {
+            HttpClient client = clientFactory.CreateClient(name: "Northwind.WebApi");
+            HttpRequestMessage request = new(method: HttpMethod.Delete, requestUri: $"api/customers/{id}");
+            HttpResponseMessage response = await client.SendAsync(request);
+            return View(response);
+        }
     }
 }

@@ -12,6 +12,7 @@
                 <th>Contact Name</th>
                 <th>Address</th>
                 <th>Phone</th>
+                <th>Action</th>
             </tr>
         </thead>
         <tbody>
@@ -33,6 +34,9 @@
                     </td>
                     <td>
                         @c.Phone
+                    </td>
+                    <td>
+                        <a asp-controller="Home" asp-action="DeleteCustomer" class="btn btn-danger">Delete Customer</a>
                     </td>
                 </tr>
             }
