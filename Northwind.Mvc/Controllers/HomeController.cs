@@ -4,7 +4,8 @@ using System.Diagnostics;//Activity
 using Packt.Shared;//NorthwindContext
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.EntityFrameworkCore;//Include extension method
-using System;
+using System.Linq;
+using System.Text.RegularExpressions; // Regex
 using Microsoft.Extensions.Logging;
 
 namespace Northwind.Mvc.Controllers
@@ -134,6 +135,29 @@ namespace Northwind.Mvc.Controllers
             HttpResponseMessage response = await client.SendAsync(request);
             Customer? customer = await response.Content.ReadFromJsonAsync<Customer>();
             return View(customer);
+        }
+        public async Task<IActionResult> SearchCustomer(string searchPhrase)
+        {
+            HttpClient client = clientFactory.CreateClient(name: "Northwind.WebApi");
+            HttpRequestMessage request = new(method: HttpMethod.Get, requestUri: "api/customers");
+            HttpResponseMessage response = await client.SendAsync(request);
+            List<Customer>? allCustomers = await response.Content.ReadFromJsonAsync<List<Customer>>();
+            List<Customer>? resultCustomers = new();
+            if (allCustomers is not null)
+            {
+                Regex regex = new Regex(searchPhrase,RegexOptions.IgnoreCase);
+                foreach (Customer c in allCustomers)
+                {//search will be on CustomerId and CompanyName
+                    MatchCollection matchesCustomerId = regex.Matches(c.CustomerId);//Regex.Match(c.CustomerId, $"{searchPhrase}");
+                    MatchCollection matchesCompanyName = regex.Matches(c.CompanyName);
+                    if ((matchesCustomerId.Count!=0)||(matchesCompanyName.Count!=0))
+                    {//add this customer to search result list (List<Customer>? resultCustomers)
+                        resultCustomers.Add(c);
+                    }
+                }
+            }
+            //customers = customers.Where()
+            return View(resultCustomers);
         }
     }
 }
