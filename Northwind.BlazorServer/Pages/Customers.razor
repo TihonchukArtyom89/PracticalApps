@@ -1,6 +1,7 @@
 ﻿@using Microsoft.EntityFrameworkCore @*ToListAsync extension method*@
 @page "/customers/{country?}"
-@inject NorthwindContext db;
+@*@inject NorthwindContext db;*@ @*direct to db*@
+@inject INorthwindService service
 <h3>Customers @(string.IsNullOrWhiteSpace(Country) ? "Worldwide" : "in " + Country)</h3>
 @if (customers is null)
 {
@@ -48,11 +49,13 @@ else
     {
         if (string.IsNullOrWhiteSpace(Country))
         {
-            customers = await db.Customers.ToListAsync();
+            //customers = await db.Customers.ToListAsync();//direct to db
+            customers = await service.GetCustomersAsync();
         }
         else
         {
-            customers = await db.Customers.Where(c => c.Country == Country).ToListAsync();
+            //customers = await db.Customers.Where(c => c.Country == Country).ToListAsync();//direct to db
+            customers = await service.GetCustomersAsync(Country);
         }
     }
 }
