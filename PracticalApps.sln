@@ -25,13 +25,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Northwind.WebApi", "Northwi
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Minimal.WebApi", "Minimal.WebApi\Minimal.WebApi.csproj", "{BD62CE2D-20FC-4032-B0BE-E85D04D7B0BC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Northwind.BlazorServer", "Northwind.BlazorServer\Northwind.BlazorServer.csproj", "{15E5E19A-55C4-4D8B-95B5-8E4CFF5E1F7F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Northwind.BlazorServer", "Northwind.BlazorServer\Northwind.BlazorServer.csproj", "{15E5E19A-55C4-4D8B-95B5-8E4CFF5E1F7F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Northwind.BlazorWasm.Server", "Northwind.BlazorWasm\Server\Northwind.BlazorWasm.Server.csproj", "{908A4DC1-C0E1-4E86-9D93-57FD6BB79112}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Northwind.BlazorWasm.Server", "Northwind.BlazorWasm\Server\Northwind.BlazorWasm.Server.csproj", "{908A4DC1-C0E1-4E86-9D93-57FD6BB79112}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Northwind.BlazorWasm.Client", "Northwind.BlazorWasm\Client\Northwind.BlazorWasm.Client.csproj", "{A60E02E5-2C16-4535-AFB5-244F92D06808}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Northwind.BlazorWasm.Client", "Northwind.BlazorWasm\Client\Northwind.BlazorWasm.Client.csproj", "{A60E02E5-2C16-4535-AFB5-244F92D06808}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Northwind.BlazorWasm.Shared", "Northwind.BlazorWasm\Shared\Northwind.BlazorWasm.Shared.csproj", "{E1A09925-0F6C-4EF9-B75F-B32373169901}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Northwind.BlazorWasm.Shared", "Northwind.BlazorWasm\Shared\Northwind.BlazorWasm.Shared.csproj", "{E1A09925-0F6C-4EF9-B75F-B32373169901}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
