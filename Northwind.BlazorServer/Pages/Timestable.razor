@@ -1,0 +1,24 @@
+﻿@page "/timestable/{number?}"
+@using static System.Convert
+<h3>Timestable for a @Number</h3>
+<div>
+    @for(int i=1;i<11;i++)
+    {
+        <p>@i x @Number = @multiplyResult(i,Number)</p>
+    }
+</div>
+@code {
+    [Parameter]
+    public string? Number { get; set; }
+    public string multiplyResult(int a,string? b="0")
+    {
+        try
+        {
+            return (a * ToInt32(b)).ToString();
+        }
+        catch (Exception ex)
+        {
+            return "Was generated exception with message: " + ex.Message;
+        }
+    }
+}
