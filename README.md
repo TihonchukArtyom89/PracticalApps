@@ -21,5 +21,5 @@
  - Northwind.Mvc - ASP.NET Core project with using MVC design pattern to create website with using two services (launch with Northwind.WebApi and Minimal.WebApi projects at the same time).
  - Northwind.WebApi - ASP.NET Core WebApi project.
  - Minimal.WebApi - ASP.NET Core WebApi project without selecting checkbox to use controllers and views.
- - Northwind.BlazorServer - Blazor Server project has CRUD for customers (get customers form db with help local service dependency) and routable page component (timestable).
+ - Northwind.BlazorServer - Blazor Server project has CRUD for customers (get customers form db with help local service dependency) and routable page component (timestable) and country loop in nav menu.
  - Northwind.BlazorWasm(Client,Server,Shared) - Blazor WebAssembly App projects has CRUD for customers (get customers form db with help customers web api controller). 
